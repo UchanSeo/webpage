@@ -1,0 +1,36 @@
+*{
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: "Poppins",sans-serif; 
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: url(Background.webp) no-repeat; 
+    background-size: cover; 
+    background-position: center;  
+    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.3);
+    background-blend-mode: lighten;
+}
+ 
+.navbar{
+    height: 75px;  
+}
+
+.icon{
+    width: 200px; 
+    height: 70px; 
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.logo{
+    color: #FFFFFF;
+    font-size: 35px;
+    font-family: '"Times New Roman", Times, serif'; 
+    padding-left: 20px;
+    float: left; 
+}

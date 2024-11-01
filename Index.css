@@ -134,3 +134,7 @@ ul li a:hover{
     font-weight: bold;
 }
 
+#question {
+    width: 200px;
+    height: 100px;
+}

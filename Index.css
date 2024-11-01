@@ -135,6 +135,23 @@ ul li a:hover{
 }
 
 #question {
-    width: 200px;
-    height: 100px;
+    width: 17.5%;
+    height: 30%;
+    position: absolute; 
+    right: 550px;
+    top: 200px;
+    opacity: 0.9;
+
 }
+
+.wrapper{
+    width:420px; 
+    background: #fffbf0; 
+    color: #000000;
+}
+
+.wrapper text{
+    font-size: 36px; 
+    text-align: center; 
+}
+

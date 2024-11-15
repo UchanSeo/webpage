@@ -10,18 +10,19 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-    body {
+    body { 
     display: flex;
     background: url(testimonials-background.png) no-repeat; 
     background-size: cover;
-
     background-position: center;  
     background-color: rgba(255, 255, 255, 0);
     background-color: rgba(255, 255, 255, 0.3);
     background-blend-mode: lighten;
+    margin : 0rem; 
+    overflow: hidden; 
         }
 
-    * {
+    /* * {
             margin: 0; 
             padding: 0; 
             box-sizing: 0;
@@ -62,13 +63,44 @@
         line-height: 5rem; 
         margin-bottom: 5rem; 
         text-shadow: 0 0 7px #000000; 
-      }
+      } */
 
-      .image{
+      /* .image{
         margin-top: 10rem; 
         margin-bottom: 5rem;
       }
 
+      .btn {
+        display: inline-block;
+        padding: 2.7rem 7.5rem; 
+        background:#f6f6f6;
+        font-size: 2rem; 
+        text-decoration: none; 
+        color: #fff;
+        border-radius: 10px; 
+        transition: background 0.5s; 
+      }
+
+      .btn:hover{
+        background:#dadada
+        
+      } */
+
+      #image-track > .image{
+        width: 40vmin; 
+        height: 56vmin;
+        object-fit: cover;
+        object-position: 0% 0% ; 
+      }
+
+      #image-track {
+        display: flex; 
+        gap: 4vmin; 
+        position: absolute; 
+        left: 50%; 
+        top: 50%;
+        transform: translate(-100%, -50%); 
+      }
 
 
       
@@ -76,7 +108,7 @@
 </head>
 
 <body>
-    <div class ="main">
+    <!-- <div class ="main">
         <div class = "navbar">
             <div class = "icon">
                 <h2 class="logo"> Webpage </h2> 
@@ -103,7 +135,66 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <a href = "#" class = "btn">Learn more</a>
+    </div> -->  
+
+    <div id = "image-track" data-mouse-down-at = "0" data-prev-percentage = "0">
+       <img class = "image" src ="Alber_Camus_Original_wall_art_print_poster_5e239b98-c750-497f-8638-dfb51ff4852f.webp" draggable = 
+      "false" >
+      <img class ="image" src ="61whMK3uhjL._AC_UF1000,1000_QL80_.jpg" draggable = "false">
+      <img class ="image" src = "which-of-these-covers-of-a-portrait-of-an-artist-as-a-young-v0-g8acpb9dwkzb1.webp" draggable = "false" >
     </div>
+
+    <script>
+
+      const track = document.getElementById("image-track"); 
+
+      window.onmousedown = e => {
+        track.dataset.mouseDownAt = e.clientX; 
+      }      
+
+      window.onmouseup = () => {
+        tack.dataset.mouseDownAt = "0";  
+        track.dataset.prevPercentage = track.dataset.percentage; 
+
+      }
+
+      window.onmousemove = e => {
+
+        if(track.dataset.mouseDownAt === "0") return; 
+
+
+        const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX, 
+              maxDelta = window.innerWidth / 2; 
+
+        const percentage = (mouseDelta / maxDelta) * -100, 
+              nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage; 
+        Math.min(nextPercentage, 0); 
+        Math.max(nextPercentage, -100); 
+
+        track.dataset.prevPercentage = nextPercentage; 
+
+
+        track.style.transform = 'translate(${nextPercentage}%, -50%)';
+
+        track.animate({
+          transform: 'translate(${nextPercentage}%, -50%)'
+        }, {duration: 1200, fill: "forwards"}); 
+
+        for (const image of track.getElementsByClassName("image")) {
+        image.style.objectPosition = '${nextPercentage + 100} 50%'; 
+      }
+
+        image.animate({
+          objectPosition:'${100 + nextPercentage}% center'}, {duration: 1200, fill: "forwards"})
+
+      }
+
+   
+
+
+    </script>
+
+    
 
 
 </body> 
